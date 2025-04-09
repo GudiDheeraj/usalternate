@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="display-5 fw-bold">Scan Product</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead">Use your camera to scan an American product and find non-American alternatives.</p>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <div class="camera-container mb-3">
+                    <video id="camera-feed" class="camera-feed" autoplay playsinline></video>
+                    <img id="capture-preview" class="capture-preview" style="display: none;">
+                    <div id="camera-status" class="text-center p-3"></div>
+                </div>
+                
+                <div class="camera-controls">
+                    <button id="capture-button" class="btn btn-danger capture-button" type="button">
+                        <i class="fas fa-camera fa-lg"></i>
+                    </button>
+                    <button id="retake-button" class="btn btn-secondary" type="button" style="display: none;">
+                        <i class="fas fa-redo me-2"></i> Retake
+                    </button>
+                    <button id="scan-button" class="btn btn-primary" type="button" style="display: none;">
+                        <i class="fas fa-search me-2"></i> Scan Product
+                    </button>
+                </div>
+                
+                <form id="scan-form" action="{{ url_for('scan_results') }}" method="post" style="display: none;">
+                    <input type="hidden" id="captured-image" name="image">
+                </form>
+            </div>
+        </div>
+        
+        <div class="card mt-4 bg-dark text-light border-0">
+            <div class="card-body p-4">
+                <h5 class="mb-3"><i class="fas fa-info-circle me-2"></i> Scanning Tips</h5>
+                <ul class="list-group list-group-flush bg-dark">
+                    <li class="list-group-item bg-dark text-light border-0 ps-0">
+                        <i class="fas fa-check-circle text-success me-2"></i> 
+                        Hold the product so that the logo or name is clearly visible
+                    </li>
+                    <li class="list-group-item bg-dark text-light border-0 ps-0">
+                        <i class="fas fa-check-circle text-success me-2"></i> 
+                        Ensure good lighting to improve recognition
+                    </li>
+                    <li class="list-group-item bg-dark text-light border-0 ps-0">
+                        <i class="fas fa-check-circle text-success me-2"></i> 
+                        Keep the camera steady when taking the picture
+                    </li>
+                    <li class="list-group-item bg-dark text-light border-0 ps-0">
+                        <i class="fas fa-check-circle text-success me-2"></i> 
+                        If scanning doesn't work, try using the search feature
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <p>Not working? Try searching for the product by name.</p>
+            <a href="{{ url_for('search') }}" class="btn btn-outline-primary">
+                <i class="fas fa-search me-2"></i> Search Products
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/camera.js') }}"></script>
+{% endblock %}

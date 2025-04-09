@@ -1,0 +1,189 @@
+/* Main Styling */
+
+/* Fade-in animation for page transitions */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Camera styling */
+.camera-container {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.camera-feed, .capture-preview {
+  width: 100%;
+  background-color: #222;
+  border-radius: 8px;
+}
+
+.camera-controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.capture-button {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: var(--bs-danger);
+  border: 4px solid #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.capture-button:hover {
+  background-color: var(--bs-danger-hover);
+  transform: scale(1.05);
+}
+
+.capture-button:active {
+  transform: scale(0.95);
+}
+
+/* Product card styling */
+.product-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.product-image-container {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--bs-dark);
+}
+
+.product-image {
+  max-height: 150px;
+  max-width: 90%;
+  object-fit: contain;
+}
+
+/* Header and features sections */
+.main-header {
+  padding: 3rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-icon {
+  height: 4rem;
+  width: 4rem;
+  background-color: var(--bs-primary-rgb);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.feature-icon svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: currentColor;
+}
+
+.feature-card {
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Search box styling */
+.search-box {
+  border-radius: 50px;
+  padding: 12px 25px;
+  border: 2px solid var(--bs-border-color);
+  transition: all 0.3s ease;
+}
+
+.search-box:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.search-button {
+  border-radius: 50px;
+  padding: 10px 30px;
+}
+
+/* Loading overlays */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  width: 5rem;
+  height: 5rem;
+}
+
+/* Result page */
+.product-badge {
+  font-size: 0.85em;
+  padding: 0.35em 0.65em;
+  border-radius: 50px;
+}
+
+.american-badge {
+  background-color: var(--bs-danger);
+  color: white;
+}
+
+.non-american-badge {
+  background-color: var(--bs-success);
+  color: white;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .camera-container {
+    max-width: 100%;
+  }
+  
+  .feature-icon {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+  
+  .feature-icon svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}

@@ -1,0 +1,98 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="display-5 fw-bold">Product Results</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead">Here's what we found for you.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">Identified Product</h5>
+            </div>
+            <div class="product-image-container bg-dark p-3">
+                {% if product.image_url %}
+                <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-image">
+                {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 512 512" class="text-light">
+                    <path fill="currentColor" d="M326.3 218.8c0 20.5-16.7 37.2-37.2 37.2h-70.3v-74.4h70.3c20.5 0 37.2 16.7 37.2 37.2zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-128.1-37.2c0-47.9-38.9-86.8-86.8-86.8H169.2v248h49.6v-74.4h70.3c47.9 0 86.8-38.9 86.8-86.8z"/>
+                </svg>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">{{ product.name }}</h4>
+                <div class="mb-2">
+                    <span class="badge {% if product.is_american %}american-badge{% else %}non-american-badge{% endif %}">
+                        {% if product.is_american %}American Product{% else %}Non-American Product{% endif %}
+                    </span>
+                </div>
+                <p class="card-text">Brand: {{ product.brand }}</p>
+                <p class="card-text">Category: {{ product.category }}</p>
+                <p class="card-text">{{ product.description }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Non-American Alternatives</h5>
+            </div>
+            <div class="card-body">
+                {% if alternatives %}
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        {% for alt in alternatives %}
+                            <div class="col">
+                                <div class="card h-100 product-card">
+                                    <div class="product-image-container bg-dark p-3">
+                                        {% if alt.image_url %}
+                                        <img src="{{ alt.image_url }}" alt="{{ alt.name }}" class="product-image">
+                                        {% else %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512" class="text-light">
+                                            <path fill="currentColor" d="M326.3 218.8c0 20.5-16.7 37.2-37.2 37.2h-70.3v-74.4h70.3c20.5 0 37.2 16.7 37.2 37.2zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-128.1-37.2c0-47.9-38.9-86.8-86.8-86.8H169.2v248h49.6v-74.4h70.3c47.9 0 86.8-38.9 86.8-86.8z"/>
+                                        </svg>
+                                        {% endif %}
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ alt.name }}</h5>
+                                        <div class="mb-2">
+                                            <span class="badge non-american-badge">Non-American Product</span>
+                                        </div>
+                                        <p class="card-text">Brand: {{ alt.brand }}</p>
+                                        <p class="card-text">{{ alt.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i> No alternatives found for this product. We're constantly updating our database.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="d-flex justify-content-between">
+            <a href="{{ url_for('scan') }}" class="btn btn-primary">
+                <i class="fas fa-camera me-2"></i> Scan Another Product
+            </a>
+            <a href="{{ url_for('search') }}" class="btn btn-outline-primary">
+                <i class="fas fa-search me-2"></i> Search Products
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-5 bg-dark text-light border-0">
+    <div class="card-body p-4">
+        <h3 class="card-title">How alternatives are selected</h3>
+        <p class="card-text">We find alternatives based on product category, popularity, and availability. Our system continuously learns to improve recommendations.</p>
+        <p class="card-text">The goal is to provide you with similar products that are not of American origin, giving you more choices for your consumer decisions.</p>
+    </div>
+</div>
+{% endblock %}

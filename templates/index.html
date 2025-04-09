@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="main-header bg-dark text-light text-center rounded-3 p-5 mb-5">
+    <h1 class="display-4 fw-bold">Discover Non-American Alternatives</h1>
+    <div class="col-lg-8 mx-auto">
+        <p class="lead mb-4">Our AI-powered tool helps you find non-American alternatives to popular American products. Scan a product or search by name to discover global alternatives.</p>
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mb-5">
+            <a href="{{ url_for('scan') }}" class="btn btn-primary btn-lg px-4 gap-3">
+                <i class="fas fa-camera me-2"></i> Scan Product
+            </a>
+            <a href="{{ url_for('search') }}" class="btn btn-outline-light btn-lg px-4">
+                <i class="fas fa-search me-2"></i> Search Products
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 py-5 row-cols-1 row-cols-md-3">
+    <div class="col">
+        <div class="feature-card card h-100 border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+                <div class="feature-icon bg-primary text-white mx-auto mb-4">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3 class="card-title">Camera Recognition</h3>
+                <p class="card-text">Point your camera at any American product and our AI will identify it. Works with popular brands and packaging.</p>
+                <a href="{{ url_for('scan') }}" class="btn btn-primary mt-3">
+                    <i class="fas fa-camera me-2"></i> Try Camera Scan
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col">
+        <div class="feature-card card h-100 border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+                <div class="feature-icon bg-primary text-white mx-auto mb-4">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3 class="card-title">Text Search</h3>
+                <p class="card-text">Know the product name already? Simply search for it and we'll suggest non-American alternatives you might enjoy.</p>
+                <a href="{{ url_for('search') }}" class="btn btn-primary mt-3">
+                    <i class="fas fa-search me-2"></i> Search Products
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col">
+        <div class="feature-card card h-100 border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+                <div class="feature-icon bg-primary text-white mx-auto mb-4">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3 class="card-title">Global Alternatives</h3>
+                <p class="card-text">Discover new products from around the world that are similar to your American favorites but with international origins.</p>
+                <a href="#" class="btn btn-primary mt-3">
+                    <i class="fas fa-info-circle me-2"></i> Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="p-5 mb-4 bg-dark rounded-3">
+    <div class="container-fluid py-3">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2 class="display-6 fw-bold">How It Works</h2>
+                <p class="fs-5">Our application uses deep learning technology to recognize American products and suggest non-American alternatives. Simply scan a product with your camera or search for it by name.</p>
+                <ol class="list-group list-group-numbered mb-4">
+                    <li class="list-group-item d-flex justify-content-between align-items-start bg-dark text-light border-0">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Scan or Search</div>
+                            Use your camera to scan a product, or search by name
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start bg-dark text-light border-0">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">AI Recognition</div>
+                            Our deep learning model identifies the American product
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start bg-dark text-light border-0">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Get Alternatives</div>
+                            Discover non-American alternatives to try instead
+                        </div>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-md-6 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 640 512" class="text-primary">
+                    <path fill="currentColor" d="M192 96c26.5 0 48-21.5 48-48s-21.5-48-48-48-48 21.5-48 48 21.5 48 48 48zm-8 384V352h16V480c0 17.7 14.3 32 32 32s32-14.3 32-32V192h136c17.7 0 32-14.3 32-32s-14.3-32-32-32h-16V64h192v320h-16c-17.7 0-32 14.3-32 32s14.3 32 32 32h32c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32H384c-17.7 0-32 14.3-32 32v32h-16c-59.3 0-112.1 37.9-131.2 94.4-6.4-4.9-14.3-7.4-22.8-7.4h-48V120c0-13.3-10.7-24-24-24H24c-13.3 0-24 10.7-24 24v72c0 13.3 10.7 24 24 24h48v88H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h56v96c0 17.7 14.3 32 32 32s32-14.3 32-32v-96h56c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8h-64v-88h64c13.3 0 24-10.7 24-24v-40z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
