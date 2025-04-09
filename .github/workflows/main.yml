@@ -1,0 +1,49 @@
+name: AlternaBrand CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f deployment_requirements.txt ]; then pip install -r deployment_requirements.txt; fi
+    
+    - name: Check syntax
+      run: |
+        # Check Python syntax
+        python -m compileall .
+    
+  deploy-to-ghpages:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Docker
+      uses: docker/setup-buildx-action@v1
+    
+    - name: Build Docker image
+      run: |
+        docker build -t alternabrand-app .
+        
+    # Add your GitHub Pages deployment steps here
+    # This is a placeholder for the actual deployment
+    # You would need to package your app or generate static files
+    # Since Flask is a backend framework, you might need a different approach for GitHub Pages
